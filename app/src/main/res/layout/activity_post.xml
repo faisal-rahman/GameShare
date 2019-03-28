@@ -70,6 +70,22 @@
             android:id="@+id/description"
             android:maxLines="5"/>
 
+        <EditText
+            android:id="@+id/price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:hint="Price"
+            android:inputType="number"
+            android:maxLines="5" />
+
+        <EditText
+            android:id="@+id/location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:hint="Location"
+            android:maxLines="5" />
     </LinearLayout>
 
 </LinearLayout>
