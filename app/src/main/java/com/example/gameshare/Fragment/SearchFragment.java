@@ -73,6 +73,7 @@ public class SearchFragment extends Fragment {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
                 searchPost(s.toString().toLowerCase());
+                //searchPostD(s.toString().toLowerCase());
             }
 
             @Override
@@ -88,6 +89,32 @@ public class SearchFragment extends Fragment {
     private void searchPost (String s)
     {
         Query query = FirebaseDatabase.getInstance().getReference("Posts").orderByChild("description")
+                .startAt(s)
+                .endAt(s+"\uf8ff");
+
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                postList.clear();
+                for (DataSnapshot snapshot: dataSnapshot.getChildren())
+                {
+                    Post post = snapshot.getValue(Post.class);
+                    postList.add(post);
+                }
+
+                postAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void searchPostD (String s)
+    {
+        Query query = FirebaseDatabase.getInstance().getReference("Posts").orderByChild("location")
                 .startAt(s)
                 .endAt(s+"\uf8ff");
 
