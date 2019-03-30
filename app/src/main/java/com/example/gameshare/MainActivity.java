@@ -7,8 +7,13 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Adapter;
+import android.widget.SearchView;
 
+import com.example.gameshare.Adapter.SearchAdapter;
 import com.example.gameshare.Fragment.HomeFragment;
 import com.example.gameshare.Fragment.NotificationFragment;
 import com.example.gameshare.Fragment.ProfileFragment;
@@ -19,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bottom_navigation;
     Fragment selectedfragment = null;
+//    Adapter adapter =
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 new HomeFragment()).commit();
+
 
 
     }
@@ -68,4 +75,6 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 }
             };
+
+
 }

@@ -5,12 +5,16 @@ public class Post {
     private String postimage;
     private String description;
     private String publisher;
+    private String price;
+    private String location;
 
-    public Post(String postid, String postimage, String description, String publisher) {
+    public Post(String postid, String postimage, String description, String publisher, String price, String location) {
         this.postid = postid;
         this.postimage = postimage;
         this.description = description;
         this.publisher = publisher;
+        this.price=price;
+        this.location=location;
     }
 
     public Post() {
@@ -46,6 +50,22 @@ public class Post {
 
     public void setPublisher(String publisher) {
         this.publisher = publisher;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }
 

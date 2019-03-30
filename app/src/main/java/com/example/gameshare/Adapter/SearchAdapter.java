@@ -6,6 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,12 +23,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder> {
 
     public Context mContext;
     public List<Post> mPosts;
+    public List<Post> mPostsFull;
 
     private FirebaseUser firebaseUser;
 
@@ -34,6 +38,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
     {
         this.mContext=mContext;
         this.mPosts= mPosts;
+        mPostsFull= new ArrayList<>(mPosts);
     }
 
     @NonNull
@@ -41,6 +46,8 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.layout_products, viewGroup,false);
         SearchAdapter.ViewHolder holder = new SearchAdapter.ViewHolder(view);
+
+
         return holder;
         //return new PostAdapter.ViewHolder(view);
     }
@@ -59,6 +66,11 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
             viewHolder.description.setVisibility(View.VISIBLE);
             viewHolder.description.setText(post.getDescription());
         }
+        viewHolder.price.setVisibility(View.VISIBLE);
+        viewHolder.price.setText("TK "+ post.getPrice());
+
+        viewHolder.location.setVisibility(View.VISIBLE);
+        viewHolder.location.setText(post.getLocation());
 
         publisherInfo(viewHolder.image_profile,viewHolder.username,viewHolder.publisher,post.getPublisher());
     }
@@ -70,27 +82,65 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         return mPosts.size();
     }
 
+    /*@Override
+    public Filter getFilter() {
+        return exampleFilter;
+    }
+    private Filter exampleFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Post> filteredList = new ArrayList<>();
+
+            if (constraint == null || constraint.length() == 0)
+            {
+                filteredList.addAll(mPostsFull);
+            }
+            else
+            {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+
+                for (Post item : mPostsFull)
+                {
+                    if(item.getDescription().toLowerCase().contains(filterPattern))
+                    {
+                        filteredList.add(item);
+                    }
+                }
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+
+            mPosts.clear();
+            mPosts.addAll((List)results.values);
+            notifyDataSetChanged();
+        }
+    } ;
+*/
+
     public class ViewHolder extends RecyclerView.ViewHolder{
 
 
 
         public ImageView image_profile, post_image, like, comment, more;
-        public TextView username, likes, publisher, description, comments;
+        public TextView username, search, publisher, description, location, price;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
-            //image_profile = itemView.findViewById(R.id.imageView);
             username = itemView.findViewById(R.id.username);
             post_image = itemView.findViewById(R.id.imageView);
-            //like = itemView.findViewById(R.id.like);
-            //comment = itemView.findViewById(R.id.comment);
+            price = itemView.findViewById(R.id.textViewPrice);
+           description = itemView.findViewById(R.id.textViewTitle);
+            location = itemView.findViewById(R.id.textViewShortDesc);
+            search = itemView.findViewById(R.id.editTextSearch);
 
-            //likes = itemView.findViewById(R.id.likes);
-            publisher = itemView.findViewById(R.id.textViewShortDesc);
-            description = itemView.findViewById(R.id.textViewTitle);
-            //comments = itemView.findViewById(R.id.comments);
-            //more = itemView.findViewById(R.id.more);
         }
     }
 
