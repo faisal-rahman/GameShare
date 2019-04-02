@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.gameshare.MessageActivity;
 import com.example.gameshare.Model.User;
 import com.example.gameshare.R;
 import com.example.gameshare.StartActivity;
@@ -74,9 +75,18 @@ public class ProfileFragment extends Fragment {
             edit_profile.setText("Edit Profile");
             Toast.makeText(getContext(), id, Toast.LENGTH_LONG).show();
         } else {
-            edit_profile.setText("Edit ");
+            edit_profile.setText("Message");
             Toast.makeText(getContext(), id, Toast.LENGTH_SHORT).show();
         }
+
+        edit_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), MessageActivity.class);
+                intent.putExtra("userid",id);
+                getContext().startActivity(intent);
+            }
+        });
         return view;
     }
 
