@@ -4,4 +4,16 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_post">PostActivity</string>
+
+    <string-array name="location">
+        <item>Select Location</item>
+        <item>Dhanmondi</item>
+        <item>Banani</item>
+        <item>Gulshan</item>
+        <item>Uttara</item>
+        <item>Old Dhaka</item>
+        <item>Mirpur</item>
+
+
+    </string-array>
 </resources>

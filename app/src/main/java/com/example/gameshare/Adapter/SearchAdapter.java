@@ -1,7 +1,10 @@
 package com.example.gameshare.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +13,11 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.gameshare.Fragment.ProfileFragment;
+import com.example.gameshare.MessageActivity;
 import com.example.gameshare.Model.Post;
 import com.example.gameshare.Model.User;
 import com.example.gameshare.R;
@@ -26,11 +32,14 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder> {
 
     public Context mContext;
     public List<Post> mPosts;
     public List<Post> mPostsFull;
+    String id;
 
     private FirebaseUser firebaseUser;
 
@@ -47,7 +56,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         View view = LayoutInflater.from(mContext).inflate(R.layout.layout_products, viewGroup,false);
         SearchAdapter.ViewHolder holder = new SearchAdapter.ViewHolder(view);
 
-
+        final Post post = mPosts.get(i);
         return holder;
         //return new PostAdapter.ViewHolder(view);
     }
@@ -57,6 +66,10 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         final Post post = mPosts.get(i);
+
+
+
+        //Toast.makeText(mContext, id, Toast.LENGTH_SHORT).show();
 
         Glide.with(mContext).load(post.getPostimage()).into(viewHolder.post_image);
 
@@ -73,6 +86,19 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         viewHolder.location.setText(post.getLocation());
 
         publisherInfo(viewHolder.image_profile,viewHolder.username,viewHolder.publisher,post.getPublisher());
+
+        viewHolder.post_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences prefs = mContext.getSharedPreferences("PREFS", MODE_PRIVATE);
+
+
+                Intent intent = new Intent(mContext,MessageActivity.class);
+                intent.putExtra("userid",post.getPublisher());
+                mContext.startActivity(intent);
+
+            }
+        });
     }
 
 

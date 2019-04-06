@@ -9,8 +9,10 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.webkit.MimeTypeMap;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,7 +31,7 @@ import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.util.HashMap;
 
-public class PostActivity extends AppCompatActivity {
+public class PostActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private Uri mImageUri;
     String miUrlOk = "";
@@ -38,7 +40,9 @@ public class PostActivity extends AppCompatActivity {
 
     ImageView close, image_added;
     TextView post;
-    EditText description,price,location;
+    EditText description,price;
+    Spinner spinner;
+    String text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +54,9 @@ public class PostActivity extends AppCompatActivity {
         post = findViewById(R.id.post);
         description = findViewById(R.id.description);
         price = findViewById(R.id.price);
-        location = findViewById(R.id.location);
+        spinner = findViewById(R.id.spinner);
+
+        spinner.setOnItemSelectedListener(this);
 
         storageRef = FirebaseStorage.getInstance().getReference("posts");
 
@@ -114,7 +120,8 @@ public class PostActivity extends AppCompatActivity {
                         hashMap.put("postimage", miUrlOk);
                         hashMap.put("description", description.getText().toString());
                         hashMap.put("price", price.getText().toString());
-                        hashMap.put("location", location.getText().toString());
+                        hashMap.put("location", text);
+                        hashMap.put("des_loc", text+"_"+description.getText().toString());
                         hashMap.put("publisher", FirebaseAuth.getInstance().getCurrentUser().getUid());
 
                         reference.child(postid).setValue(hashMap);
@@ -155,5 +162,16 @@ public class PostActivity extends AppCompatActivity {
             startActivity(new Intent(PostActivity.this, MainActivity.class));
             finish();
         }
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            text = parent.getItemAtPosition(position).toString();
+        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }

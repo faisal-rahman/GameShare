@@ -13,8 +13,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.SearchView;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.gameshare.Adapter.SearchAdapter;
 import com.example.gameshare.Model.Post;
@@ -30,13 +33,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class SearchFragment extends Fragment {
+public class SearchFragment extends Fragment implements AdapterView.OnItemSelectedListener {
 
     private RecyclerView recyclerViewS;
     private SearchAdapter postAdapter;
     private List<Post> postList;
 
     EditText search;
+    Spinner spinner;
+    String text;
 
 
     @Override
@@ -57,8 +62,11 @@ public class SearchFragment extends Fragment {
 
         postList = new ArrayList<>();
         search = view.findViewById(R.id.editTextSearch);
+        spinner = view.findViewById(R.id.spinLoc);
         postAdapter = new SearchAdapter(getContext(), postList);
         recyclerViewS.setAdapter(postAdapter);
+
+        spinner.setOnItemSelectedListener(this);
 
 
         readPosts();
@@ -72,8 +80,22 @@ public class SearchFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                searchPost(s.toString().toLowerCase());
-                //searchPostD(s.toString().toLowerCase());
+                //String loc = text+"_"+s;
+
+
+                if(text.equals("Select Location"))
+                {
+                    searchPost(s.toString().toLowerCase());
+                }
+                else
+                {
+                    CharSequence loc =  text+"_"+s;
+                    searchPostD(loc.toString());
+                }
+
+
+
+
             }
 
             @Override
@@ -114,7 +136,8 @@ public class SearchFragment extends Fragment {
 
     private void searchPostD (String s)
     {
-        Query query = FirebaseDatabase.getInstance().getReference("Posts").orderByChild("location")
+        Toast.makeText(getContext(), s, Toast.LENGTH_SHORT).show();
+        Query query = FirebaseDatabase.getInstance().getReference("Posts").orderByChild("des_loc")
                 .startAt(s)
                 .endAt(s+"\uf8ff");
 
@@ -165,5 +188,18 @@ public class SearchFragment extends Fragment {
     }
 
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        text = parent.getItemAtPosition(position).toString();
 
+        if(!text.equals("Select Location"))
+        {
+            searchPostD(text+"_");
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
 }

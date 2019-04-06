@@ -79,11 +79,12 @@
             android:inputType="number"
             android:maxLines="5" />
 
-        <EditText
-            android:id="@+id/location"
+        <Spinner
+            android:id="@+id/spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
+            android:entries="@array/location"
             android:hint="Location"
             android:maxLines="5" />
     </LinearLayout>
