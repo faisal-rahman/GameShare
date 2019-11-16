@@ -1,114 +1,45 @@
 {
   "project_info": {
-    "project_number": "114623818296",
-    "firebase_url": "https://gameshare-3ada0.firebaseio.com",
-    "project_id": "gameshare-3ada0",
-    "storage_bucket": "gameshare-3ada0.appspot.com"
+    "project_number": "213977825173",
+    "firebase_url": "https://foodeli.firebaseio.com",
+    "project_id": "foodeli",
+    "storage_bucket": "foodeli.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:114623818296:android:eeaec9205d21cb1d",
-        "android_client_info": {
-          "package_name": "com.example.android.logindemo"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "114623818296-7fv1n4ac3582iuhbpe2esoeqj4igs7g0.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCGEwRdJEbArXDZ-0y2YfXuA0D1Hsk-Pb8"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:114623818296:android:14e7e908e661f82d",
+        "mobilesdk_app_id": "1:213977825173:android:9abf962b884b01a55d009c",
         "android_client_info": {
           "package_name": "com.example.gameshare"
         }
       },
       "oauth_client": [
         {
-          "client_id": "114623818296-pptraqv4voe3ehpnhknpnghus4r7cupr.apps.googleusercontent.com",
+          "client_id": "213977825173-jq4iie7r8au31hdth4ssd4df80ubmpfs.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.gameshare",
-            "certificate_hash": "2a0cd6fffcca53a9ea992d89e7103ea38f9ef50a"
+            "certificate_hash": "eea36a09a177008a7d2c16071cf2da090b109b01"
           }
         },
         {
-          "client_id": "114623818296-7fv1n4ac3582iuhbpe2esoeqj4igs7g0.apps.googleusercontent.com",
+          "client_id": "213977825173-pcvnf25utb29k4b3l4etvrf4a8rbep5b.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCGEwRdJEbArXDZ-0y2YfXuA0D1Hsk-Pb8"
+          "current_key": "AIzaSyBUFTPJ9O5Trive2iaWYIqa05lVWRnCFc4"
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "114623818296-7fv1n4ac3582iuhbpe2esoeqj4igs7g0.apps.googleusercontent.com",
+              "client_id": "213977825173-pcvnf25utb29k4b3l4etvrf4a8rbep5b.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
-        },
-        "ads_service": {
-          "status": 2
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:114623818296:android:6fddbf0bc1b4e2c3",
-        "android_client_info": {
-          "package_name": "com.example.project"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "114623818296-7fv1n4ac3582iuhbpe2esoeqj4igs7g0.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCGEwRdJEbArXDZ-0y2YfXuA0D1Hsk-Pb8"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
         }
       }
     }

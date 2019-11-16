@@ -36,7 +36,7 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_register_cook);
 
         username = findViewById(R.id.username);
         fullname = findViewById(R.id.fullname);
@@ -71,6 +71,7 @@ public class RegisterActivity extends AppCompatActivity {
                 } else if (str_password.length() < 6) {
                     Toast.makeText(RegisterActivity.this, "password too short", Toast.LENGTH_SHORT).show();
                 } else {
+
                     register(str_username,str_fullname, str_email,str_password);
 
                 }
